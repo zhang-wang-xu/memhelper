@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Memhelper</string>
+    <string name="passage_mem">篇章记忆</string>
+    <string name="card_mem">卡片记忆</string>
+</resources>
