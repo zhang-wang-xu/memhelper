@@ -1,8 +1,10 @@
-package com.example.memhelper;
+package com.example.memhelper.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.memhelper.R;
 
 public class PassageActivity extends AppCompatActivity {
 

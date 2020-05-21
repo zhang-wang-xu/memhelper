@@ -1,4 +1,4 @@
-package com.example.memhelper;
+package com.example.memhelper.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.memhelper.R;
 
 public class MainActivity extends AppCompatActivity {
     Button butPassageMem; //篇章记忆按钮
