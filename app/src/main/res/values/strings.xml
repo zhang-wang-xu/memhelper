@@ -2,4 +2,12 @@
     <string name="app_name">Memhelper</string>
     <string name="passage_mem">篇章记忆</string>
     <string name="card_mem">卡片记忆</string>
+    <string name="home">首页</string>
+    <string name="settings">设置</string>
+    <string name="add">添加</string>
+    <string name="add_passage">添加篇章</string>
+    <string name="back">返回</string>
+    <string name="write_title">输入标题</string>
+    <string name="write_content">输入正文</string>
+    <string name="proceed">下一步</string>
 </resources>
