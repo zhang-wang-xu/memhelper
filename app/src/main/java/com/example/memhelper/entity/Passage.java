@@ -1,6 +1,8 @@
 package com.example.memhelper.entity;
 
-public class Passage {
+import java.io.Serializable;
+
+public class Passage implements Serializable {
     private int passageId;
     private String title;
     private String content;

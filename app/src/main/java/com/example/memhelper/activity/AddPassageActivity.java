@@ -35,7 +35,12 @@ public class AddPassageActivity extends AppCompatActivity {
         String title = ediAddTitle.getText() + "";
         String content = ediAddContent.getText() + "";
         Passage passage = new Passage(title, content);
-        dbUtil.insertPassage(passage);
+        //dbUtil.insertPassage(passage);
+        Intent intent = new Intent(this, AddBarActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("passage", passage);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     //初始化返回按钮
