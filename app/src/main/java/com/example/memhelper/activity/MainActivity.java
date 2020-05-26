@@ -14,17 +14,19 @@ public class MainActivity extends AppCompatActivity {
     Button butPassageMem; //篇章记忆按钮
     Button butCardMem; //卡片记忆按钮
     Intent intentToPassage;
+    Intent intentToCardset;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         intentToPassage  = new Intent(MainActivity.this, PassageActivity.class);
+        intentToCardset = new Intent(MainActivity.this,CarsetActivity.class);
         butPassageMem = findViewById(R.id.butPassageMem);
         butCardMem = findViewById(R.id.butCardMem);
         butCardMem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "card memorization", Toast.LENGTH_SHORT).show();
+                startActivity(intentToCardset);
             }
         });
         butPassageMem.setOnClickListener(new View.OnClickListener() {

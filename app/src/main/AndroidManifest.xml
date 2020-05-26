@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.PassageActivity" />
+        <activity android:name=".activity.CarsetActivity" />
     </application>
 
 </manifest>
