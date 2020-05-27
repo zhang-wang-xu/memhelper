@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import java.util.List;
 import java.util.LinkedList;
+
+import com.example.memhelper.activity.CarsetActivity;
+import com.example.memhelper.entity.Cardset;
 import com.example.memhelper.entity.Passage;
 
 public class DBUtil {
@@ -43,6 +46,23 @@ public class DBUtil {
         return passages;
     }
 
+    public List<Cardset> getCardsets(){
+        before();
+        Cursor cursor = database.query("cardset", null, null, null, null, null, null);
+        if(cursor.isBeforeFirst()) cursor.moveToFirst();
+        List<Cardset> cardsets = new LinkedList<>();
+        Cardset cardset;
+        while(cursor.isAfterLast() == false){
+            cardset = new Cardset();
+            cardset.setPassageId(cursor.getInt(0));
+            cardset.setTitle(cursor.getString(1));
+            cardsets.add(cardset);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        after();
+        return cardsets;
+    }
     //添加篇章
     //输入：标题、正文
     public void insertPassage(Passage passage){
@@ -53,6 +73,14 @@ public class DBUtil {
         contentValues.put("title", title);
         contentValues.put("content", content);
         database.insert("passage", null, contentValues);
+        after();
+    }
+    public void insertCardset(Cardset cardset){
+        before();
+        String title = cardset.getTitle();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", title);
+        database.insert("cardset", null, contentValues);
         after();
     }
 }

@@ -2,14 +2,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
-    tools:context="com.example.memhelper.activity.CarsetActivity" >
+    android:background="#FBFBFB"
+    android:orientation="vertical"
+    tools:context="com.example.memhelper.activity.CarsetActivity">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:text="请选择要测试的卡片集" />
+
     <GridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnWidth="80dp"
-        android:stretchMode="spacingWidthUniform"
         android:numColumns="3"
-        />
+        android:stretchMode="spacingWidthUniform" />
+
 </LinearLayout>

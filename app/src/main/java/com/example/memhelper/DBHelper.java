@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final String DB_NAME = "memhelper";
+    private static final String DB_NAME = "memhelper.db";
     private static final int DB_VERSION = 1;
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
