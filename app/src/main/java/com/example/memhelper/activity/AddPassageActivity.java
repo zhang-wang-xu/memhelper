@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,14 +25,15 @@ public class AddPassageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_passage);
-        initButBack();
-        initButProceed();
         ediAddTitle = findViewById(R.id.edi_add_title);
         ediAddContent = findViewById(R.id.edi_add_content);
+        initButBack();
+        initButProceed();
     }
 
+    //创建passage对象，切换到AddBarActivity并将passage对象传递到AddBarActivity
     private void addPassage(){
-        DBUtil dbUtil = new DBUtil(new DBHelper(this));
+        //DBUtil dbUtil = new DBUtil(new DBHelper(this));
         String title = ediAddTitle.getText() + "";
         String content = ediAddContent.getText() + "";
         Passage passage = new Passage(title, content);

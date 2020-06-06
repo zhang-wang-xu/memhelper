@@ -7,6 +7,7 @@
     <string name="add">添加</string>
     <string name="add_passage">添加篇章</string>
     <string name="back">返回</string>
+    <string name="edit">编辑</string>
     <string name="write_title">输入标题</string>
     <string name="write_content">输入正文</string>
     <string name="proceed">下一步</string>
@@ -16,4 +17,8 @@
     <string name="cancel">取消</string>
     <string name="menu_addcardset">添加卡片集</string>
     <string name="menu_delcardset">删除卡片集</string>
+    <string name="clear">清屏</string>
+    <string name="restore">复原</string>
+    <string name="erase">擦除</string>
+    <string name="paint">抹黑</string>
 </resources>

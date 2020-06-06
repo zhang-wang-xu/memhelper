@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,69 +9,77 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/but_addbar_back"
+                android:id="@+id/but_viewpas_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="返回" />
+                android:text="@string/back" />
 
-            <TextView
-                android:id="@+id/textView8"
+            <Button
+                android:id="@+id/but_viewpas_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="触摸文本以添加黑条" />
+                android:text="@string/edit" />
         </LinearLayout>
 
-        <com.example.memhelper.view.PassageView
-            android:id="@+id/tex_addbar"
-            android:layout_width="match_parent"
+        <com.example.memhelper.view.TestTextView
+            android:id="@+id/tex_viewpas"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout">
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout6">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/but_viewpas_clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="随机贴条" />
+                android:text="@string/clear" />
 
             <Button
-                android:id="@+id/but_addbar_finish"
+                android:id="@+id/but_viewpas_restore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="完成" />
+                android:text="@string/restore" />
 
             <Button
-                android:id="@+id/but_addbar_cancel"
+                android:id="@+id/but_viewpas_erase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="取消" />
+                android:text="@string/erase" />
+
+            <Button
+                android:id="@+id/but_viewpas_paint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/paint" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="bottom"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent">
 
@@ -83,5 +90,4 @@
                 android:layout_weight="1" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </LinearLayout>

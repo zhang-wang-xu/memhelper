@@ -51,12 +51,12 @@ public class PassageActivity extends AppCompatActivity {
             butPassage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Bundle idBundle = new Bundle();
+                    Bundle idBundle = new Bundle();
                     idBundle.putInt("passageId", passage.getPassageId());
-                    Intent intent = new Intent(PassageActivity.this, MainActivity.class);
+                    Intent intent = new Intent(PassageActivity.this, ViewPassageActivity.class);
                     intent.putExtras(idBundle);
-                    startActivity(intent);*/
-                    Toast.makeText(PassageActivity.this, "" + passage.getPassageId(), Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    //Toast.makeText(PassageActivity.this, "" + passage.getPassageId(), Toast.LENGTH_SHORT).show();
                 }
             });
             passageList.addView(butPassage);
