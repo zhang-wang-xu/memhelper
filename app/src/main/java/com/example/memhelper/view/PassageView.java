@@ -22,6 +22,9 @@ import java.util.ArrayList;
 
 @SuppressLint("AppCompatCustomView")
 public class PassageView extends TextView {
+    final int TOUCH_ERASE = 0;
+    final int TOUCH_COVER = 1;
+    int touchMode;
     Paint paint;
     private int size = 70;
     private int col = 12;
@@ -73,9 +76,27 @@ public class PassageView extends TextView {
     public boolean onTouchEvent(MotionEvent event) {
         int x = (int)event.getX();
         int y = (int)event.getY();
+        if(event.getAction() == event.ACTION_DOWN){
+            setTouchMode(x, y);
+        }
         touchChar(x, y);
         invalidate(); //重新绘制区域
         return true;
+    }
+
+    //如果触摸的是黑块，则把touchMode设置为ERASE，否则设置为COVER。
+    private void setTouchMode(int x, int y){
+        int r = y / size;
+        int c = x / size;
+        int index = r * col + c;
+        if(index < passage.size()){
+            if(passage.get(index).isHidden()){
+                touchMode = TOUCH_ERASE;
+            }
+            else{
+                touchMode = TOUCH_COVER;
+            }
+        }
     }
 
     //隐藏/显示字符
@@ -85,7 +106,14 @@ public class PassageView extends TextView {
         int c = x / size;
         int index = r * col + c;
         if(index < passage.size()){
-            passage.get(index).setHidden(true);
+            switch (touchMode){
+                case TOUCH_COVER:
+                    passage.get(index).setHidden(true);
+                    break;
+                case TOUCH_ERASE:
+                    passage.get(index).setHidden(false);
+                    break;
+            }
         }
     }
 

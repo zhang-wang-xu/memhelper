@@ -51,7 +51,7 @@ public class DBUtil {
     //0床0前0明0月0光0，1疑1是1地1上1霜0。
     public void addPassage(ArrayList<Char> passage, String title){
         before();
-        database.delete("passage", null, null);
+        //database.delete("passage", null, null);
         StringBuffer stringBuffer = new StringBuffer();
         for(Char ch : passage){
             stringBuffer.append(ch.isHidden() ? "1" : "0");

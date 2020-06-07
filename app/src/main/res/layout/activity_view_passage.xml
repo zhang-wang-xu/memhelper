@@ -20,14 +20,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/back" />
+                android:text="@string/back"
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/but_viewpas_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/edit" />
+                android:text="@string/edit"
+                android:textColor="#E53935" />
         </LinearLayout>
 
         <com.example.memhelper.view.TestTextView
@@ -52,28 +54,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/clear" />
+                android:text="@string/clear"
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/but_viewpas_restore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/restore" />
+                android:text="@string/restore"
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/but_viewpas_erase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/erase" />
+                android:text="@string/erase"
+                android:textColor="#E53935" />
 
             <Button
                 android:id="@+id/but_viewpas_paint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/paint" />
+                android:text="@string/paint"
+                android:textColor="#E53935" />
         </LinearLayout>
 
         <LinearLayout
