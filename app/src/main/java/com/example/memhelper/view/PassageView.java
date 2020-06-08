@@ -120,12 +120,12 @@ public class PassageView extends TextView {
     //在这里测试canvas提供的绘制图形方法
     @Override
     protected void onDraw(Canvas canvas) {
-        for(int i = 0; i < 10; i++){
+/*        for(int i = 0; i < 10; i++){
             canvas.drawLine(0, i*size, getMeasuredWidth()+0, i*size, paint);
         }
         for(int i = 0; i < col; i++){
             canvas.drawLine(i*size, 0, i*size, getMeasuredHeight(), paint);
-        }
+        }*/
         String text = getText()+"";
         int r, c;
         for(int i = 0; i < passage.size(); i++){
