@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="触摸文本以添加黑条" />
+                android:text="触摸文本以添加/删除黑条" />
         </LinearLayout>
 
         <com.example.memhelper.view.PassageView
@@ -46,19 +46,11 @@
             app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
             <Button
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="随机贴条"
-                android:textColor="#E53935" />
-
-            <Button
                 android:id="@+id/but_addbar_finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="完成" />
+                android:text="完成修改" />
 
             <Button
                 android:id="@+id/but_addbar_cancel"

@@ -60,5 +60,16 @@ public class ViewPassageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        butEdit = findViewById(R.id.but_viewpas_edit);
+        butEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewPassageActivity.this, EditBarActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("passage", passage);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 }
