@@ -3,6 +3,7 @@ package com.example.memhelper.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.example.memhelper.DBUtil;
 import com.example.memhelper.R;
 import com.example.memhelper.entity.Cardset;
 import com.example.memhelper.entity.Passage;
+import com.example.memhelper.view.GridViewAdapter;
 
 import java.security.CryptoPrimitive;
 import java.util.ArrayList;
@@ -32,10 +34,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class CarsetActivity extends AppCompatActivity {
+public class CarsetActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener {
     private GridView gridView;
     private List<Map<String, Object>> dataList;
-    private SimpleAdapter adapter;
+    private GridViewAdapter mAdapter;
+    private boolean isShowDelete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,22 +50,24 @@ public class CarsetActivity extends AppCompatActivity {
         //初始化数据
         initData();
 
-        String[] from={"text"};
 
-        int[] to={R.id.text};
+        mAdapter = new GridViewAdapter(CarsetActivity.this, dataList);
 
-        adapter=new SimpleAdapter(this, dataList, R.layout.cardset_item, from, to);
+        gridView.setAdapter(mAdapter);
 
-        gridView.setAdapter(adapter);
+        gridView.setOnItemLongClickListener(this);//长按事件监听
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
-                AlertDialog.Builder builder= new AlertDialog.Builder(CarsetActivity.this);
-                builder.setTitle("提示").setMessage(dataList.get(arg2).get("text").toString()).create().show();
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int arg2, long arg3) {
+                Toast.makeText(getApplicationContext(), dataList.get(arg2).get("text").toString(),Toast.LENGTH_LONG).show();
             }
+
         });
+
 
     }
 
@@ -81,6 +86,7 @@ public class CarsetActivity extends AppCompatActivity {
             dataList.add(map);
         }
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.cardset_menu,menu);
         return true;
@@ -105,9 +111,9 @@ public class CarsetActivity extends AppCompatActivity {
 
                                 int[] to={R.id.text};
 
-                                adapter=new SimpleAdapter(CarsetActivity.this, dataList, R.layout.cardset_item, from, to);
-                                gridView.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
+                                mAdapter = new GridViewAdapter(CarsetActivity.this, dataList);//重新绑定一次adapter
+                                gridView.setAdapter(mAdapter);
+                                mAdapter.notifyDataSetChanged();//刷新gridview
                                 Toast.makeText(getApplicationContext(), et.getText().toString(),Toast.LENGTH_LONG).show();
                             }
                         }).setNegativeButton("取消",null).show();
@@ -123,6 +129,48 @@ public class CarsetActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                   int position, long id) {
+        if (isShowDelete) {
+            isShowDelete = false;
+
+        } else {
+            isShowDelete = true;
+            mAdapter.setIsShowDelete(isShowDelete);
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    DBUtil dbUtil = new DBUtil(new DBHelper(CarsetActivity.this));
+                    Cardset passage = new Cardset(dataList.get(position).get("text").toString());
+                    dbUtil.deleteCardset(passage);
+                    Toast.makeText(getApplicationContext(), "删除状态",Toast.LENGTH_SHORT).show();
+                    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                        @Override
+                        public void onItemClick(AdapterView<?> arg0, View arg1,
+                                                int arg2, long arg3) {
+                            Toast.makeText(getApplicationContext(), dataList.get(arg2).get("text").toString(),Toast.LENGTH_LONG).show();
+                        }
+
+                    });
+                    isShowDelete=false;
+                    mAdapter.setIsShowDelete(isShowDelete);
+                    initData();
+                    mAdapter = new GridViewAdapter(CarsetActivity.this, dataList);//重新绑定一次adapter
+                    gridView.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();//刷新gridview
+                }
+
+            });
+        }
+        Log.i("------>", "进来了没");
+
+        return true;
+    }
+
 
 
 

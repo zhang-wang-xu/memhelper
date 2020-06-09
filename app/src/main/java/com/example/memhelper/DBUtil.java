@@ -130,4 +130,12 @@ public class DBUtil {
         database.insert("cardset", null, contentValues);
         after();
     }
+    public void deleteCardset(Cardset cardset)
+    {
+        before();
+        String title[]=new String[1];
+        title[0]=cardset.getTitle();
+        database.delete("cardset", "name=?", title);
+        after();
+    }
 }

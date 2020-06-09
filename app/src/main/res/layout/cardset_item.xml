@@ -4,14 +4,21 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical" >
+    <FrameLayout
+        android:id="@+id/starred_item_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
 
-<!--    <ImageView-->
-<!--        android:id="@+id/img"-->
-<!--        android:layout_width="65dp"-->
-<!--        android:layout_height="65dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:src="@drawable/home" />-->
-    <TextView
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dip"
+            android:layout_marginTop="2dip"
+            android:gravity="center"
+            android:orientation="vertical" >
+        <TextView
         android:id="@+id/text"
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -23,4 +30,16 @@
         android:textColor="#000"
         android:textSize="20sp" />
 
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/delete_markView"
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:layout_marginTop="10dip"
+            android:layout_gravity="right|top"
+            android:adjustViewBounds="true"
+            android:src="@drawable/delete"
+            android:visibility="gone"/>
+    </FrameLayout>
 </LinearLayout>
