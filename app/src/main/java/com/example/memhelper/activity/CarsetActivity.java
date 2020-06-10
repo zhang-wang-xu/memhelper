@@ -63,7 +63,13 @@ public class CarsetActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1,
                                     int arg2, long arg3) {
-                Toast.makeText(getApplicationContext(), dataList.get(arg2).get("text").toString(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), ((Cardset)(dataList.get(arg2).get("cardset"))).getPassageId()+"",Toast.LENGTH_LONG).show();
+                Cardset cardset = ((Cardset)(dataList.get(arg2).get("cardset")));
+                Intent intent = new Intent(CarsetActivity.this, CardListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("cardsetId", cardset.getPassageId());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
 
         });
@@ -82,7 +88,7 @@ public class CarsetActivity extends AppCompatActivity implements AdapterView.OnI
         for (int i = 0; i <Cardsets.size(); i++) {
             Map<String, Object> map=new HashMap<String, Object>();
             //map.put("img", icno[i]);
-            map.put("text",Cardsets.get(i).getTitle());
+            map.put("cardset",Cardsets.get(i));
             dataList.add(map);
         }
     }

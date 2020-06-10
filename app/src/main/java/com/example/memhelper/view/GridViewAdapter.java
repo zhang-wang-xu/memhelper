@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.memhelper.R;
+import com.example.memhelper.entity.Cardset;
 
 public class GridViewAdapter extends BaseAdapter {
     private List<Map<String, Object>> myList;
@@ -59,7 +60,7 @@ public class GridViewAdapter extends BaseAdapter {
         name_tv = (TextView) convertView.findViewById(R.id.text);
         deleteView = convertView.findViewById(R.id.delete_markView);
         deleteView.setVisibility(isShowDelete ? View.VISIBLE : View.GONE);// 设置删除按钮是否显示
-        name_tv.setText(myList.get(position).get("text").toString());
+        name_tv.setText(((Cardset)(myList.get(position).get("cardset"))).getTitle());
         return convertView;
     }
 }

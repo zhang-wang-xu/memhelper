@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 import com.example.memhelper.activity.CarsetActivity;
+import com.example.memhelper.entity.Card;
 import com.example.memhelper.entity.Cardset;
 import com.example.memhelper.entity.Char;
 import com.example.memhelper.entity.Passage;
@@ -30,6 +31,51 @@ public class DBUtil {
         database.close();
     }
 
+    public void deleteCard(int cardId){
+        before();
+        database.delete("card", "cardId=?", new String[]{cardId+""});
+        after();
+    }
+
+    public void modifyCard(int cardId, String front, String back){
+        before();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("front", front);
+        contentValues.put("back", back);
+        database.update("card",contentValues,"cardId=?",new String[]{cardId+""});
+        after();
+    }
+
+    public List<Card> getCardByCardsetId(int cardsetId){
+        before();
+        Cursor cursor = database.query("card",null,"cardsetId=?", new String[]{cardsetId+""},null,null,null);
+        if(cursor.isBeforeFirst()) cursor.moveToFirst();
+        List<Card> list = new LinkedList<>();
+        Card card;
+        while(cursor.isAfterLast() == false){
+            card = new Card();
+            card.setCardsetId(cardsetId);
+            card.setCardId(cursor.getInt(0));
+            card.setFront(cursor.getString(1));
+            card.setBack(cursor.getString(2));
+            list.add(card);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        after();
+        return list;
+    }
+
+    public void addCard(Card card){
+        before();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("cardsetId", card.getCardsetId());
+        contentValues.put("front", card.getFront());
+        contentValues.put("back", card.getBack());
+        database.insert("card", null, contentValues);
+        after();
+    }
+
     public Passage getPassageById(int passageId){
         before();
         Cursor cursor = database.query("passage", null, "passageId=?", new String[]{passageId+""},null,null,null);
@@ -41,6 +87,7 @@ public class DBUtil {
             passage.setTitle(cursor.getString(1));
             passage.setContent(cursor.getString(2));
         }
+        cursor.close();
         after();
         return passage;
     }

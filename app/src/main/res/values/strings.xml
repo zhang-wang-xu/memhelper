@@ -21,4 +21,8 @@
     <string name="restore">复原</string>
     <string name="erase">擦除</string>
     <string name="paint">抹黑</string>
+    <string name="delete">删除</string>
+    <string name="self_test">自测</string>
+    <string name="front_side">正面内容</string>
+    <string name="back_side">背面内容</string>
 </resources>

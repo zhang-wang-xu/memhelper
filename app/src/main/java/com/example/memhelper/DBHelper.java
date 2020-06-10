@@ -8,10 +8,12 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "memhelper.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
+
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -39,6 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         "cardId integer primary key autoincrement," +
                         "front text not null," +
                         "back text not null," +
+                        "cardsetId integer not null," +
                         "wrong integer);";
         String createTableCardmapping =
                 "create table cardmapping(" +
@@ -54,6 +57,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String sqlDropCard = "drop table card;";
+        String createTableCard =
+                "create table card(" +
+                        "cardId integer primary key autoincrement," +
+                        "front text not null," +
+                        "back text not null," +
+                        "cardsetId integer not null," +
+                        "wrong integer);";
+        db.execSQL(sqlDropCard);
+        db.execSQL(createTableCard);
     }
 }
