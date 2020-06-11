@@ -16,6 +16,8 @@ import com.example.memhelper.entity.Passage;
 
 public class AddPassageActivity extends AppCompatActivity {
 
+    Button butCardMemory;
+    Button butPassageMemory;
     Button butBack;
     Button butProceed;
     EditText ediAddTitle;
@@ -29,6 +31,22 @@ public class AddPassageActivity extends AppCompatActivity {
         ediAddContent = findViewById(R.id.edi_add_content);
         initButBack();
         initButProceed();
+        butCardMemory = findViewById(R.id.but_card);
+        butCardMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddPassageActivity.this, CarsetActivity.class);
+                startActivity(intent);
+            }
+        });
+        butPassageMemory = findViewById(R.id.but_passage);
+        butPassageMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddPassageActivity.this, PassageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //创建passage对象，切换到AddBarActivity并将passage对象传递到AddBarActivity

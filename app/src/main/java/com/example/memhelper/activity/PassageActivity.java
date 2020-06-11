@@ -19,6 +19,8 @@ import java.util.List;
 public class PassageActivity extends AppCompatActivity {
     LinearLayout passageList;
     Button butAddPassage;
+    Button butCardMemory;
+    Button butPassageMemory;
     DBUtil dbUtil = new DBUtil(new DBHelper(this));
 
     @Override
@@ -29,6 +31,23 @@ public class PassageActivity extends AppCompatActivity {
         java.util.List<Passage> passages = dbUtil.getPassages(); //从数据库中读取所有篇章
         showPassages(passages);
         initButAddPassage();
+
+        butCardMemory = findViewById(R.id.but_card);
+        butCardMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PassageActivity.this, CarsetActivity.class);
+                startActivity(intent);
+            }
+        });
+        butPassageMemory = findViewById(R.id.but_passage);
+        butPassageMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PassageActivity.this, PassageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initButAddPassage(){

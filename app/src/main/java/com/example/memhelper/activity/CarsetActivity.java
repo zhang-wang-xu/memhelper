@@ -35,6 +35,8 @@ import java.util.List;
 import java.util.Map;
 
 public class CarsetActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener {
+    Button butCardMemory;
+    Button butPassageMemory;
     private GridView gridView;
     private List<Map<String, Object>> dataList;
     private GridViewAdapter mAdapter;
@@ -73,7 +75,22 @@ public class CarsetActivity extends AppCompatActivity implements AdapterView.OnI
             }
 
         });
-
+        butCardMemory = findViewById(R.id.but_card);
+        butCardMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CarsetActivity.this, CarsetActivity.class);
+                startActivity(intent);
+            }
+        });
+        butPassageMemory = findViewById(R.id.but_passage);
+        butPassageMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CarsetActivity.this, PassageActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -125,7 +142,35 @@ public class CarsetActivity extends AppCompatActivity implements AdapterView.OnI
                         }).setNegativeButton("取消",null).show();
                 break;
             case R.id.menu_delcardset:
-                Toast.makeText(this,"设置", Toast.LENGTH_SHORT).show();
+                isShowDelete = true;
+                mAdapter.setIsShowDelete(isShowDelete);
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        DBUtil dbUtil = new DBUtil(new DBHelper(CarsetActivity.this));
+                        Cardset passage = new Cardset(((Cardset)dataList.get(position).get("cardset")).getTitle());
+                        dbUtil.deleteCardset(passage);
+                        //Toast.makeText(getApplicationContext(), "删除状态",Toast.LENGTH_SHORT).show();
+                        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                            @Override
+                            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                                    int arg2, long arg3) {
+                                Toast.makeText(getApplicationContext(), dataList.get(arg2).get("cardset").toString(),Toast.LENGTH_LONG).show();
+                            }
+
+                        });
+                        isShowDelete=false;
+                        mAdapter.setIsShowDelete(isShowDelete);
+                        initData();
+                        mAdapter = new GridViewAdapter(CarsetActivity.this, dataList);//重新绑定一次adapter
+                        gridView.setAdapter(mAdapter);
+                        mAdapter.notifyDataSetChanged();//刷新gridview
+                    }
+
+                });
                 break;
             case android.R.id.home:
                 finish();
@@ -150,15 +195,15 @@ public class CarsetActivity extends AppCompatActivity implements AdapterView.OnI
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
                     DBUtil dbUtil = new DBUtil(new DBHelper(CarsetActivity.this));
-                    Cardset passage = new Cardset(dataList.get(position).get("text").toString());
+                    Cardset passage = new Cardset(((Cardset)dataList.get(position).get("cardset")).getTitle());
                     dbUtil.deleteCardset(passage);
-                    Toast.makeText(getApplicationContext(), "删除状态",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "删除状态",Toast.LENGTH_SHORT).show();
                     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                         @Override
                         public void onItemClick(AdapterView<?> arg0, View arg1,
                                                 int arg2, long arg3) {
-                            Toast.makeText(getApplicationContext(), dataList.get(arg2).get("text").toString(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), dataList.get(arg2).get("cardset").toString(),Toast.LENGTH_LONG).show();
                         }
 
                     });

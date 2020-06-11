@@ -68,9 +68,11 @@ public class CardListActivity extends AppCompatActivity {
         }
     }
 
+    Button butCardMemory;
+    Button butPassageMemory;
     private Button butAdd;
-
     private Button butTest;
+    private Button butBack;
     private EditText ediFront;
     private EditText ediBack;
     private LinearLayout layCards;
@@ -83,6 +85,22 @@ public class CardListActivity extends AppCompatActivity {
         initId();
         initButtons();
         initList();
+        butCardMemory = findViewById(R.id.but_card);
+        butCardMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CardListActivity.this, CarsetActivity.class);
+                startActivity(intent);
+            }
+        });
+        butPassageMemory = findViewById(R.id.but_passage);
+        butPassageMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CardListActivity.this, PassageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initId(){
@@ -138,6 +156,27 @@ public class CardListActivity extends AppCompatActivity {
                     }
                 });
                 alertDialog.show();
+            }
+        });
+
+        butTest = findViewById(R.id.but_card_test);
+        butTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CardListActivity.this, CardTestActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("cardsetId", cardsetId);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        butBack = findViewById(R.id.but_cardlist_back);
+        butBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CardListActivity.this, CarsetActivity.class);
+                startActivity(intent);
             }
         });
     }

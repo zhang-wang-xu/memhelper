@@ -92,6 +92,21 @@ public class DBUtil {
         return passage;
     }
 
+    public void modifyPassage(int passageId, ArrayList<Char> passage, String title){
+        before();
+        StringBuffer stringBuffer = new StringBuffer();
+        for(Char ch : passage){
+            stringBuffer.append(ch.isHidden() ? "1" : "0");
+            stringBuffer.append(ch.getCh());
+        }
+        String text = stringBuffer.toString();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("title", title);
+        contentValues.put("content", text);
+        database.update("passage",contentValues,"passageId=?",new String[]{passageId+""});
+        after();
+    }
+
     //将篇章插入数据库
     //如果篇章中的字符是隐藏的，就在前面加一个"1"，如果不是隐藏的，就在前面加一个"0"
     //插入的数据是这样的：

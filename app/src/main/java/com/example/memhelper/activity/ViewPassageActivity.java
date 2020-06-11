@@ -16,6 +16,8 @@ import com.example.memhelper.view.TestTextView;
 
 public class ViewPassageActivity extends AppCompatActivity {
 
+    Button butCardMemory;
+    Button butPassageMemory;
     private Button butClear;
     private Button butRestore;
     private Button butBack;
@@ -35,6 +37,22 @@ public class ViewPassageActivity extends AppCompatActivity {
         texPassage = findViewById(R.id.tex_viewpas);
         texPassage.setText(passage.getContent());
         initButtons();
+        butCardMemory = findViewById(R.id.but_card);
+        butCardMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewPassageActivity.this, CarsetActivity.class);
+                startActivity(intent);
+            }
+        });
+        butPassageMemory = findViewById(R.id.but_passage);
+        butPassageMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewPassageActivity.this, PassageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initButtons(){

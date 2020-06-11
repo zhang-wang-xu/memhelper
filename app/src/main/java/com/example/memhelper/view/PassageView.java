@@ -71,6 +71,14 @@ public class PassageView extends TextView {
         invalidate();
     }
 
+    public void setEncodedText(String text){
+        passage = new ArrayList<>();
+        for(int i = 0; i < text.length(); i+=2){
+            passage.add(new Char(text.charAt(i+1)+"", text.charAt(i)=='1'));
+        }
+        invalidate();
+    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

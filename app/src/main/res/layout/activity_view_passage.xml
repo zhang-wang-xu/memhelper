@@ -29,14 +29,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/edit"
-                android:textColor="#E53935" />
+                android:textColor="#000000" />
         </LinearLayout>
 
         <com.example.memhelper.view.TestTextView
             android:id="@+id/tex_viewpas"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,21 +64,6 @@
                 android:text="@string/restore"
                 android:textColor="#000000" />
 
-            <Button
-                android:id="@+id/but_viewpas_erase"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/erase"
-                android:textColor="#E53935" />
-
-            <Button
-                android:id="@+id/but_viewpas_paint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/paint"
-                android:textColor="#E53935" />
         </LinearLayout>
 
         <LinearLayout

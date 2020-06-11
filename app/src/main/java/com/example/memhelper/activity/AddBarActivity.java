@@ -16,6 +16,8 @@ import com.example.memhelper.entity.Passage;
 import com.example.memhelper.view.PassageView;
 
 public class AddBarActivity extends AppCompatActivity {
+    Button butCardMemory;
+    Button butPassageMemory;
     Button butBack;
     Button butFinish;
     Button butAddRandom;
@@ -33,6 +35,22 @@ public class AddBarActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         passage = (Passage)bundle.getSerializable("passage");
+        butCardMemory = findViewById(R.id.but_card);
+        butCardMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddBarActivity.this, CarsetActivity.class);
+                startActivity(intent);
+            }
+        });
+        butPassageMemory = findViewById(R.id.but_passage);
+        butPassageMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddBarActivity.this, PassageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
