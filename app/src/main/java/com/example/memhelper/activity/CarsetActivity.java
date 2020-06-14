@@ -158,7 +158,12 @@ public class CarsetActivity extends AppCompatActivity implements AdapterView.OnI
                             @Override
                             public void onItemClick(AdapterView<?> arg0, View arg1,
                                                     int arg2, long arg3) {
-                                Toast.makeText(getApplicationContext(), dataList.get(arg2).get("cardset").toString(),Toast.LENGTH_LONG).show();
+                                Cardset cardset = ((Cardset)(dataList.get(arg2).get("cardset")));
+                                Intent intent = new Intent(CarsetActivity.this, CardListActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("cardsetId", cardset.getPassageId());
+                                intent.putExtras(bundle);
+                                startActivity(intent);
                             }
 
                         });
@@ -203,7 +208,12 @@ public class CarsetActivity extends AppCompatActivity implements AdapterView.OnI
                         @Override
                         public void onItemClick(AdapterView<?> arg0, View arg1,
                                                 int arg2, long arg3) {
-                            Toast.makeText(getApplicationContext(), dataList.get(arg2).get("cardset").toString(),Toast.LENGTH_LONG).show();
+                            Cardset cardset = ((Cardset)(dataList.get(arg2).get("cardset")));
+                            Intent intent = new Intent(CarsetActivity.this, CardListActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("cardsetId", cardset.getPassageId());
+                            intent.putExtras(bundle);
+                            startActivity(intent);
                         }
 
                     });
@@ -217,7 +227,7 @@ public class CarsetActivity extends AppCompatActivity implements AdapterView.OnI
 
             });
         }
-        Log.i("------>", "进来了没");
+
 
         return true;
     }
